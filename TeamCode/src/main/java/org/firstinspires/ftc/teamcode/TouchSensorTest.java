@@ -13,14 +13,18 @@ public class TouchSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
+        // Initialize our robot
         TouchSensor touchSensor = hardwareMap.get(TouchSensor.class, "sensorToTest");
 
+        // Wait for the play button to be pressed
         waitForStart();
 
+        // Runs repeatedly while this op mode is active
         while(opModeIsActive()) {
+            // Write to our telemetry
             telemetry.addLine("Touch Sensor:");
-            telemetry.addLine("Is Pressed: " + touchSensor.isPressed());
-            telemetry.addLine("Force Applied: " + touchSensor.getValue());
+            telemetry.addLine("Is Pressed: " + touchSensor.isPressed()); // Show whether the sensor is pressed
+            telemetry.addLine("Force Applied: " + touchSensor.getValue()); // Get the force applied value (will be either 0 or 1 if sensor does't support this).
             telemetry.update();
         }
     }
